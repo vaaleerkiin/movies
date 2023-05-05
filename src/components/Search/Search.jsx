@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Wrap, Input, Submit } from './Search.styled';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 export const Search = ({ handleSubmit }) => {
   const [query, setQuery] = useState('');
@@ -36,3 +37,5 @@ export const Search = ({ handleSubmit }) => {
     </Wrap>
   );
 };
+
+Search.propTypes = { handleSubmit: PropTypes.func.isRequired };

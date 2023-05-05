@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 
+import PropTypes from 'prop-types';
+
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { Wrap, Ul, StyledLink, Item, Img } from './Details.styled';
@@ -30,10 +32,19 @@ export const Details = ({
         <h1>{`${original_title} (${String(release_date).slice(0, 4)})`}</h1>
         <p>User score: {Math.round(vote_average * 10)}%</p>
         <h2>Overview</h2>
-        <p>{overview}</p> <h3>Genres</h3>
-        <p>
-          {genres && genres.map(({ name }) => <span key={name}>{name} </span>)}
-        </p>
+        <p>{overview}</p>
+
+        {genres?.[0] && (
+          <>
+            <h2>Genres</h2>
+            <p>
+              {genres.map(({ name }) => (
+                <span key={name}>{name} </span>
+              ))}
+            </p>
+          </>
+        )}
+
         <h3>Additional information</h3>
         <Ul>
           <Item>
@@ -46,4 +57,12 @@ export const Details = ({
       </div>
     </Wrap>
   );
+};
+Details.propTypes = {
+  overview: PropTypes.string.isRequired,
+  original_title: PropTypes.string.isRequired,
+  release_date: PropTypes.string.isRequired,
+  poster_path: PropTypes.string.isRequired,
+  vote_average: PropTypes.number.isRequired,
+  genres: PropTypes.array,
 };

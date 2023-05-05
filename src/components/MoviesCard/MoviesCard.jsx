@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Card, Title, StyledLink, Release } from './MoviesCard.styled';
 import { useLocation } from 'react-router-dom';
 export const MoviesCard = ({ title, poster_path, release_date, id }) => {
@@ -10,4 +11,11 @@ export const MoviesCard = ({ title, poster_path, release_date, id }) => {
       </StyledLink>
     </Card>
   );
+};
+
+MoviesCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  poster_path: PropTypes.string.isRequired,
+  release_date: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
