@@ -4,11 +4,8 @@ export const Loading = () => {
     <div
       style={{
         backgroundColor: ' #363030',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        position: 'absolute',
+        width: '100%',
+        height: '30vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
