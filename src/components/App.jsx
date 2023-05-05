@@ -7,6 +7,7 @@ const Movies = lazy(() => import('pages/Movies'));
 const MovieDetails = lazy(() => import('pages/MovieDetails'));
 const Cast = lazy(() => import('components/Cast/Cast'));
 const Reviews = lazy(() => import('components/Reviews/Reviews'));
+const NotFound = lazy(() => import('pages/NotFound'));
 export const App = () => {
   return (
     <Suspense fallback={<Loading />}>
@@ -19,6 +20,7 @@ export const App = () => {
             <Route path="reviews" element={<Reviews />}></Route>
           </Route>
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );

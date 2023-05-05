@@ -24,7 +24,7 @@ export const Details = ({
         src={
           poster_path
             ? `https://image.tmdb.org/t/p/w300/${poster_path}?api_key=b3b4716df5187d0bc9138efc2668bc10`
-            : null
+            : `https://gdr.one/simg/200x300/363030/fff?text=Not%20found`
         }
         alt={original_title}
       />
@@ -62,7 +62,7 @@ Details.propTypes = {
   overview: PropTypes.string.isRequired,
   original_title: PropTypes.string.isRequired,
   release_date: PropTypes.string.isRequired,
-  poster_path: PropTypes.string.isRequired,
+  poster_path: PropTypes.string,
   vote_average: PropTypes.number.isRequired,
   genres: PropTypes.array,
 };

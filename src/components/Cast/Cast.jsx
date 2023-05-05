@@ -35,7 +35,7 @@ const Cast = () => {
     return (
       <div>
         <Wrap>
-          {movies.cast &&
+          {movies.cast?.[0] ? (
             movies.cast.map(({ name, id, profile_path, character }) => (
               <Item key={id}>
                 <img
@@ -53,7 +53,10 @@ const Cast = () => {
                   </p>
                 </div>
               </Item>
-            ))}
+            ))
+          ) : (
+            <h3>There's nothing here</h3>
+          )}
         </Wrap>
       </div>
     );
