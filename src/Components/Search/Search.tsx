@@ -30,9 +30,7 @@ export const Search = () => {
   }, []);
 
   const getData = async (): Promise<{ results: IMvoies[] }> => {
-    const response = await fetch(
-      `http://localhost:3000/api/movies?search=${search}`
-    );
+    const response = await fetch(`/api/movies?search=${search}`);
     return response.json();
   };
 
