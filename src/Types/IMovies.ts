@@ -7,4 +7,6 @@ export interface IMvoies {
   original_title: string;
   genres?: [{ id: number; name: string }];
   vote_average: number;
+  budget?: number;
+  status?: string;
 }
