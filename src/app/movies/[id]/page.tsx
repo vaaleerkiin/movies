@@ -19,8 +19,8 @@ type Props = {
 
 export default async function MoviesById({ params: { id } }: Props) {
   const getData = async (): Promise<IMvoies> => {
-    const HOST = process.env.HOST;
-    const response = await fetch(`${HOST}/api/movies/${id}`);
+    // const HOST = process.env.HOST;
+    const response = await fetch(`http://localhost:3000/api/movies/${id}`);
     return response.json();
   };
 

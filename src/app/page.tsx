@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export default async function Home() {
   const getData = async (): Promise<{ results: IMvoies[] }> => {
-    const HOST = process.env.HOST;
-    const response = await fetch(`${HOST}/api/new`, {
+    // const HOST = process.env.HOST;
+    const response = await fetch(`http://localhost:3000/api/new`, {
       next: { revalidate: 60 * 60 },
     });
     return response.json();
