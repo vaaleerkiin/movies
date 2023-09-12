@@ -17,6 +17,17 @@ import {
 import dateFormat from "dateformat";
 import { ICast } from "@/Types/ICast";
 import { Reviews } from "@/Components/Reviews/Reviews";
+import type { Metadata } from "next";
+
+export const generateMetadata = async ({
+  params: { id },
+}: Props): Promise<Metadata> => {
+  const results = await getData(id);
+  return {
+    title: results.title,
+    description: results.title,
+  };
+};
 
 type Props = {
   params: {
@@ -25,13 +36,7 @@ type Props = {
 };
 
 export default async function MoviesById({ params: { id } }: Props) {
-  const getData = async (): Promise<IMvoies> => {
-    const HOST = process.env.HOST;
-    const response = await fetch(`${HOST}/api/movies/${id}`);
-    return response.json();
-  };
-
-  const results = await getData();
+  const results = await getData(id);
 
   const getCast = async (): Promise<{ cast: ICast[] }> => {
     const HOST = process.env.HOST;
@@ -126,3 +131,9 @@ export default async function MoviesById({ params: { id } }: Props) {
     </div>
   );
 }
+
+const getData = async (id: string): Promise<IMvoies> => {
+  const HOST = process.env.HOST;
+  const response = await fetch(`${HOST}/api/movies/${id}`);
+  return response.json();
+};

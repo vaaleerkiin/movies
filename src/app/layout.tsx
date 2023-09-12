@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { Navigation } from "@/Components/Navigation/Navigation";
 import { Providers } from "./providers";
 import { Container } from "@chakra-ui/react";
+
+export const metadata: Metadata = {
+  title: "Movie",
+  description: "Movie Library",
+};
 
 export default function RootLayout({
   children,
