@@ -3,26 +3,26 @@ import { Cast } from "@/Components/Cast/Cast";
 import { IMvoies } from "@/Types/IMovies";
 import s from "./page.module.css";
 import millify from "millify";
+import { getData, getMovie } from "@/app/api/api";
 
-import {
-  Container,
-  Img,
-  Stack,
-  Heading,
-  Text,
-  Wrap,
-  WrapItem,
-  HStack,
-} from "@chakra-ui/react";
+import { Container, Img, Stack, Heading, Text, HStack } from "@chakra-ui/react";
 import dateFormat from "dateformat";
-import { ICast } from "@/Types/ICast";
+
 import { Reviews } from "@/Components/Reviews/Reviews";
 import type { Metadata } from "next";
+
+export async function generateStaticParams() {
+  const { results: movies } = await getData();
+  return movies.map(({ id }) => ({
+    slug: id.toString(),
+  }));
+}
 
 export const generateMetadata = async ({
   params: { id },
 }: Props): Promise<Metadata> => {
-  const results = await getData(id);
+  const results = await getMovie(id);
+
   return {
     title: results.title,
     description: results.title,
@@ -36,15 +36,7 @@ type Props = {
 };
 
 export default async function MoviesById({ params: { id } }: Props) {
-  const results = await getData(id);
-
-  const getCast = async (): Promise<{ cast: ICast[] }> => {
-    const HOST = process.env.HOST;
-    const response = await fetch(`${HOST}/api/movies/${id}/cast`);
-    return response.json();
-  };
-
-  const { cast } = await getCast();
+  const results = await getMovie(id);
 
   return (
     <div style={{ padding: "0 16px" }}>
@@ -131,9 +123,3 @@ export default async function MoviesById({ params: { id } }: Props) {
     </div>
   );
 }
-
-const getData = async (id: string): Promise<IMvoies> => {
-  const HOST = process.env.HOST;
-  const response = await fetch(`${HOST}/api/movies/${id}`);
-  return response.json();
-};

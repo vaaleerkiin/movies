@@ -21,24 +21,18 @@ import {
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { Loading } from "../Loading/Loading";
+import { getReviews } from "@/app/api/api";
 
 export const Reviews = ({ id }: { id: string }) => {
   const [reviews, setReviews] = useState<IReviews[]>([]);
   const [init, setInit] = useState(true);
 
-  const getReviews = async (): Promise<{ results: IReviews[] }> => {
-    const HOST = process.env.HOST;
-    const response = await fetch(`/api/movies/${id}/reviews`);
-    return response.json();
-  };
-
   useEffect(() => {
     (async () => {
-      const data = await getReviews();
+      const data = await getReviews(id);
       setReviews(data.results);
       setInit(false);
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (

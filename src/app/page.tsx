@@ -1,16 +1,9 @@
 import { IMvoies } from "@/Types/IMovies";
 import { Center, Wrap, WrapItem, Img } from "@chakra-ui/react";
 import Link from "next/link";
+import { getData } from "./api/api";
 
 export default async function Home() {
-  const getData = async (): Promise<{ results: IMvoies[] }> => {
-    const HOST = process.env.HOST;
-    const response = await fetch(`${HOST}/api/new`, {
-      next: { revalidate: 60 * 60 },
-    });
-    return response.json();
-  };
-
   const { results } = await getData();
 
   return (

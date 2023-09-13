@@ -9,16 +9,11 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import { Loading } from "../Loading/Loading";
+import { getCast } from "@/app/api/api";
 
 export const Cast = ({ id }: { id: string }) => {
   const [cast, setCast] = useState<ICast[]>([]);
   const [init, setInit] = useState(true);
-
-  const getCast = async (): Promise<{ cast: ICast[] }> => {
-    const HOST = process.env.HOST;
-    const response = await fetch(`/api/movies/${id}/cast`);
-    return response.json();
-  };
 
   const isMobile = useMediaQuery({ query: "(max-width: 550px)" });
   const isTablet = useMediaQuery({ query: "(max-width: 860px)" });
@@ -43,11 +38,10 @@ export const Cast = ({ id }: { id: string }) => {
 
   useEffect(() => {
     (async () => {
-      const data = await getCast();
+      const data = await getCast(id);
       setCast(data.cast);
       setInit(false);
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
