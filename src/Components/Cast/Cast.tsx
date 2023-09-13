@@ -8,9 +8,11 @@ import { Scrollbar, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
+import { Loading } from "../Loading/Loading";
 
 export const Cast = ({ id }: { id: string }) => {
   const [cast, setCast] = useState<ICast[]>([]);
+  const [init, setInit] = useState(true);
 
   const getCast = async (): Promise<{ cast: ICast[] }> => {
     const HOST = process.env.HOST;
@@ -43,12 +45,14 @@ export const Cast = ({ id }: { id: string }) => {
     (async () => {
       const data = await getCast();
       setCast(data.cast);
+      setInit(false);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
     <div>
+      {init && <Loading />}
       {cast.length > 0 && (
         <Container
           marginTop={3}

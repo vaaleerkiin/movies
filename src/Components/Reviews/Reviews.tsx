@@ -20,9 +20,11 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
+import { Loading } from "../Loading/Loading";
 
 export const Reviews = ({ id }: { id: string }) => {
   const [reviews, setReviews] = useState<IReviews[]>([]);
+  const [init, setInit] = useState(true);
 
   const getReviews = async (): Promise<{ results: IReviews[] }> => {
     const HOST = process.env.HOST;
@@ -34,12 +36,15 @@ export const Reviews = ({ id }: { id: string }) => {
     (async () => {
       const data = await getReviews();
       setReviews(data.results);
+      setInit(false);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
-    <div>
+    <>
+      {init && <Loading />}
+
       {reviews.length > 0 && (
         <Container
           marginTop={3}
@@ -81,6 +86,6 @@ export const Reviews = ({ id }: { id: string }) => {
           </Accordion>
         </Container>
       )}
-    </div>
+    </>
   );
 };
