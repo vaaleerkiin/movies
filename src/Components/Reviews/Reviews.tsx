@@ -1,4 +1,3 @@
-"use client";
 import { IReviews } from "@/Types/IReviews";
 import dateFormat from "dateformat";
 
