@@ -17,13 +17,15 @@ export const getMovie = async (id: string): Promise<IMvoies> => {
 };
 
 export const getCast = async (id: string): Promise<{ cast: ICast[] }> => {
-  const response = await fetch(`/api/movies/${id}/cast`);
+  const HOST = process.env.HOST;
+  const response = await fetch(`${HOST}/api/movies/${id}/cast`);
   return response.json();
 };
 
 export const getReviews = async (
   id: string
 ): Promise<{ results: IReviews[] }> => {
-  const response = await fetch(`/api/movies/${id}/reviews`);
+  const HOST = process.env.HOST;
+  const response = await fetch(`${HOST}/api/movies/${id}/reviews`);
   return response.json();
 };

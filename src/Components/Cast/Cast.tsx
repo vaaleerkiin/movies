@@ -1,20 +1,15 @@
 "use client";
 import { ICast } from "@/Types/ICast";
 import { Container, Heading, Img, Text } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useMediaQuery } from "react-responsive";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
-import { Loading } from "../Loading/Loading";
-import { getCast } from "@/app/api/api";
 
-export const Cast = ({ id }: { id: string }) => {
-  const [cast, setCast] = useState<ICast[]>([]);
-  const [init, setInit] = useState(true);
-
+export const Cast = ({ cast }: { cast: ICast[] }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 550px)" });
   const isTablet = useMediaQuery({ query: "(max-width: 860px)" });
   const isLaptop = useMediaQuery({ query: "(max-width: 1200px)" });
@@ -36,17 +31,8 @@ export const Cast = ({ id }: { id: string }) => {
     }
   };
 
-  useEffect(() => {
-    (async () => {
-      const data = await getCast(id);
-      setCast(data.cast);
-      setInit(false);
-    })();
-  }, [id]);
-
   return (
-    <div>
-      {init && <Loading />}
+    <>
       {cast.length > 0 && (
         <Container
           marginTop={3}
@@ -73,12 +59,13 @@ export const Cast = ({ id }: { id: string }) => {
               disableOnInteraction: true,
             }}
           >
-            {cast?.map((el: ICast) => {
+            {cast.map((el: ICast) => {
+              console.log(el);
+
               return (
                 <SwiperSlide key={el.id}>
                   <div>
                     <Img
-                      //   aspectRatio="2/3"
                       objectFit="contain"
                       maxH="234px"
                       src={
@@ -101,6 +88,6 @@ export const Cast = ({ id }: { id: string }) => {
           </Swiper>
         </Container>
       )}
-    </div>
+    </>
   );
 };

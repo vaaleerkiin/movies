@@ -1,9 +1,8 @@
 import { BackButton } from "@/Components/BackButton/BackButton";
 import { Cast } from "@/Components/Cast/Cast";
-import { IMvoies } from "@/Types/IMovies";
 import s from "./page.module.css";
 import millify from "millify";
-import { getData, getMovie } from "@/app/api/api";
+import { getCast, getData, getMovie, getReviews } from "@/app/api/api";
 
 import { Container, Img, Stack, Heading, Text, HStack } from "@chakra-ui/react";
 import dateFormat from "dateformat";
@@ -37,6 +36,8 @@ type Props = {
 
 export default async function MoviesById({ params: { id } }: Props) {
   const results = await getMovie(id);
+  const cast = await getCast(id).then((res) => res.cast);
+  const reviews = await getReviews(id).then((res) => res.results);
 
   return (
     <div style={{ padding: "0 16px" }}>
@@ -119,7 +120,7 @@ export default async function MoviesById({ params: { id } }: Props) {
           <Text fontSize="lg">{results.overview}</Text>
         </Stack>
       </Container>
-      <Cast id={id} /> <Reviews id={id} />
+      <Cast cast={cast} /> <Reviews reviews={reviews} />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 "use client";
-
 import { IReviews } from "@/Types/IReviews";
 import dateFormat from "dateformat";
 
@@ -15,30 +14,12 @@ import {
   AccordionIcon,
   Box,
   Avatar,
-  Wrap,
-  Stack,
-  HStack,
 } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
-import { Loading } from "../Loading/Loading";
-import { getReviews } from "@/app/api/api";
+import React from "react";
 
-export const Reviews = ({ id }: { id: string }) => {
-  const [reviews, setReviews] = useState<IReviews[]>([]);
-  const [init, setInit] = useState(true);
-
-  useEffect(() => {
-    (async () => {
-      const data = await getReviews(id);
-      setReviews(data.results);
-      setInit(false);
-    })();
-  }, [id]);
-
+export const Reviews = ({ reviews }: { reviews: IReviews[] }) => {
   return (
     <>
-      {init && <Loading />}
-
       {reviews.length > 0 && (
         <Container
           marginTop={3}
