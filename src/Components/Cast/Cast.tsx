@@ -1,5 +1,6 @@
 import { ICast } from "@/Types/ICast";
 import { Box, Container, Flex, Heading, Img, Text } from "@chakra-ui/react";
+
 import React from "react";
 
 export const Cast = ({ cast }: { cast: ICast[] }) => {
@@ -25,13 +26,12 @@ export const Cast = ({ cast }: { cast: ICast[] }) => {
             gap={6}
             overflowX="auto"
             scrollSnapType="x mandatory"
-            css={{
+            sx={{
               "&::-webkit-scrollbar": {
-                width: "2px",
+                width: "8px",
+                height: "8px",
               },
-              "&::-webkit-scrollbar-track": {
-                width: "2px",
-              },
+              "&::-webkit-scrollbar-track": { background: "transparen" },
               "&::-webkit-scrollbar-thumb": {
                 background: "#363030",
 
@@ -41,7 +41,12 @@ export const Cast = ({ cast }: { cast: ICast[] }) => {
           >
             {cast.map((el: ICast) => {
               return (
-                <Box maxW={200} key={el.id} scrollSnapAlign="center">
+                <Box
+                  maxW={200}
+                  key={el.id}
+                  scrollSnapAlign="center"
+                  marginBottom={2}
+                >
                   <Img
                     objectFit="contain"
                     src={
@@ -53,7 +58,9 @@ export const Cast = ({ cast }: { cast: ICast[] }) => {
                     minW={132}
                     maxW={132}
                   />
-                  <Text as="b">{el.name}</Text>
+                  <Text noOfLines={1} as="b">
+                    {el.name}
+                  </Text>
                   <Text noOfLines={1}>
                     <Text as="b">Role:</Text> {el.character}
                   </Text>
