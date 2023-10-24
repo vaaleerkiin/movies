@@ -26,10 +26,11 @@ export const Cast = ({ cast }: { cast: ICast[] }) => {
             gap={6}
             overflowX="auto"
             scrollSnapType="x mandatory"
+            borderBottom="2px solid #f4a259"
             sx={{
               "&::-webkit-scrollbar": {
-                width: "8px",
-                height: "8px",
+                width: "10px",
+                height: "10px",
               },
               "&::-webkit-scrollbar-track": { background: "transparen" },
               "&::-webkit-scrollbar-thumb": {
