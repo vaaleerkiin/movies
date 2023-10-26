@@ -5,10 +5,12 @@ import { getData } from "./api/api";
 const HOST = process.env.HOST;
 
 export default async function Home() {
-  const response = await fetch(`${HOST}/api/new`, {
-    next: { revalidate: 3600 },
-  });
-  const { results: movies }: { results: IMvoies[] } = await response.json();
+  // const response = await fetch(`${HOST}/api/new`, {
+  //   next: { revalidate: 10 },
+  // });
+
+  // const { results: movies }: { results: IMvoies[] } = await response.json();
+  const { results: movies } = await getData();
 
   return (
     <Wrap justify="center" padding={3} paddingTop={2} paddingBottom={2}>
