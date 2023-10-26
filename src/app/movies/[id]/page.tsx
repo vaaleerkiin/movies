@@ -1,10 +1,10 @@
+import { getCast, getData, getMovie, getReviews } from "@/app/api/api";
 import { BackButton } from "@/Components/BackButton/BackButton";
 import { Cast } from "@/Components/Cast/Cast";
-import s from "./page.module.css";
 import millify from "millify";
-import { getCast, getData, getMovie, getReviews } from "@/app/api/api";
+import s from "./page.module.css";
 
-import { Container, Img, Stack, Heading, Text, HStack } from "@chakra-ui/react";
+import { Container, Heading, HStack, Img, Stack, Text } from "@chakra-ui/react";
 import dateFormat from "dateformat";
 
 import { Reviews } from "@/Components/Reviews/Reviews";

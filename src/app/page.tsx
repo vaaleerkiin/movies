@@ -1,5 +1,5 @@
-import { IMvoies } from "@/Types/IMovies";
-import { Center, Wrap, WrapItem, Img } from "@chakra-ui/react";
+import { Center, Img, Wrap, WrapItem } from "@chakra-ui/react";
+
 import Link from "next/link";
 import { getData } from "./api/api";
 
