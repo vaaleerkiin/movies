@@ -1,14 +1,18 @@
+import { IMvoies } from "@/Types/IMovies";
 import { Center, Img, Wrap, WrapItem } from "@chakra-ui/react";
-
 import Link from "next/link";
 import { getData } from "./api/api";
+const HOST = process.env.HOST;
 
 export default async function Home() {
-  const { results } = await getData();
+  const response = await fetch(`${HOST}/api/new`, {
+    next: { revalidate: 3600 },
+  });
+  const { results: movies }: { results: IMvoies[] } = await response.json();
 
   return (
     <Wrap justify="center" padding={3} paddingTop={2} paddingBottom={2}>
-      {results.map((el) => (
+      {movies.map((el) => (
         <WrapItem
           key={el.id}
           borderRadius={8}
