@@ -6,7 +6,7 @@ const HOST = process.env.HOST;
 
 export default async function Home() {
   const response = await fetch(`${HOST}/api/new`, {
-    next: { revalidate: 10 },
+    next: { revalidate: 60 },
   });
   const { results: movies }: { results: IMvoies[] } = await response.json();
   console.log(Date());
