@@ -11,8 +11,6 @@ export default async function Home() {
   const { results: movies }: { results: IMvoies[] } = await response.json();
   console.log(Date());
 
-  // const { results: movies } = await getData();
-
   return (
     <Wrap justify="center" padding={3} paddingTop={2} paddingBottom={2}>
       {movies.map((el) => (
