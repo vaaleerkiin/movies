@@ -4,10 +4,8 @@ import { IReviews } from "@/Types/IReviews";
 const HOST = process.env.HOST;
 
 export const getData = async (): Promise<{ results: IMvoies[] }> => {
-  const response = await fetch(`${HOST}/api/new`, {
-    next: { revalidate: 60 },
-  });
-  console.log(Date());
+  const response = await fetch(`${HOST}/api/new`);
+
 
   return await response.json();
 };
