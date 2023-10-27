@@ -5,8 +5,6 @@ const HOST = process.env.HOST;
 
 export const getData = async (): Promise<{ results: IMvoies[] }> => {
   const response = await fetch(`${HOST}/api/new`);
-
-
   return await response.json();
 };
 
