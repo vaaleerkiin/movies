@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { AiOutlineSearch } from "react-icons/ai";
+import { getDataQuery } from "@/app/api/api";
 
 export const Search = () => {
   const router = useRouter();
@@ -24,20 +25,14 @@ export const Search = () => {
 
   useEffect(() => {
     handlerSubmit();
-    console.log(1);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getData = async (): Promise<{ results: IMvoies[] }> => {
-    const response = await fetch(`/api/movies?search=${search}`);
-    return response.json();
-  };
-
   const handlerSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
     if (!search || search === "") return;
-    const { results } = await getData();
+    const { results } = await getDataQuery(search);
     setData(results);
   };
 

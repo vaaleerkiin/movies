@@ -3,6 +3,13 @@ import { IMvoies } from "@/Types/IMovies";
 import { IReviews } from "@/Types/IReviews";
 const HOST = process.env.HOST;
 
+export const getDataQuery = async (
+  query: string
+): Promise<{ results: IMvoies[] }> => {
+  const response = await fetch(`/api/movies?search=${query}`);
+  return response.json();
+};
+
 export const getData = async (): Promise<{ results: IMvoies[] }> => {
   const response = await fetch(`${HOST}/api/new`);
   return await response.json();
