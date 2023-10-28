@@ -4,23 +4,29 @@ import { IReviews } from "@/Types/IReviews";
 const HOST = process.env.HOST;
 
 export const getData = async (): Promise<{ results: IMvoies[] }> => {
-  const response = await fetch(`${HOST}/api/new`);
+  const response = await fetch(`${HOST}/api/new`, { cache: "no-cache" });
   return await response.json();
 };
 
 export const getMovie = async (id: string): Promise<IMvoies> => {
-  const response = await fetch(`${HOST}/api/movies/${id}`);
+  const response = await fetch(`${HOST}/api/movies/${id}`, {
+    cache: "no-cache",
+  });
   return await response.json();
 };
 
 export const getCast = async (id: string): Promise<{ cast: ICast[] }> => {
-  const response = await fetch(`${HOST}/api/movies/${id}/cast`);
+  const response = await fetch(`${HOST}/api/movies/${id}/cast`, {
+    cache: "no-cache",
+  });
   return await response.json();
 };
 
 export const getReviews = async (
   id: string
 ): Promise<{ results: IReviews[] }> => {
-  const response = await fetch(`${HOST}/api/movies/${id}/reviews`);
+  const response = await fetch(`${HOST}/api/movies/${id}/reviews`, {
+    cache: "no-cache",
+  });
   return await response.json();
 };
