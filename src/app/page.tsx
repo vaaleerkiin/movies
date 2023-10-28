@@ -1,7 +1,6 @@
 import { IMvoies } from "@/Types/IMovies";
 import { Center, Img, Wrap, WrapItem } from "@chakra-ui/react";
 import Link from "next/link";
-import { getData } from "./api/api";
 const HOST = process.env.HOST;
 
 export default async function Home() {

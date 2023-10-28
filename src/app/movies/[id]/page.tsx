@@ -1,17 +1,21 @@
-import { getCast, getData, getMovie, getReviews } from "@/app/api/api";
+import { getCast, getMovie, getReviews } from "@/app/api/api";
 import { BackButton } from "@/Components/BackButton/BackButton";
 import { Cast } from "@/Components/Cast/Cast";
-import millify from "millify";
-import s from "./page.module.css";
-
+import { Reviews } from "@/Components/Reviews/Reviews";
+import { IMvoies } from "@/Types/IMovies";
 import { Container, Heading, HStack, Img, Stack, Text } from "@chakra-ui/react";
 import dateFormat from "dateformat";
-
-import { Reviews } from "@/Components/Reviews/Reviews";
+import millify from "millify";
 import type { Metadata } from "next";
+import s from "./page.module.css";
+
+const HOST = process.env.HOST;
 
 export async function generateStaticParams() {
-  const { results: movies } = await getData();
+  const response = await fetch(`${HOST}/api/new`, {
+    next: { revalidate: 60 },
+  });
+  const { results: movies }: { results: IMvoies[] } = await response.json();
   return movies.map(({ id }) => ({
     slug: id.toString(),
   }));
