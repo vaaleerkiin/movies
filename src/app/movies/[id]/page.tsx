@@ -39,9 +39,11 @@ type Props = {
 };
 
 export default async function MoviesById({ params: { id } }: Props) {
-  const results = await getMovie(id);
-  const cast = await getCast(id).then((res) => res.cast);
-  const reviews = await getReviews(id).then((res) => res.results);
+  const [results, cast, reviews] = await Promise.all([
+    getMovie(id),
+    getCast(id).then((res) => res.cast),
+    getReviews(id).then((res) => res.results),
+  ]);
 
   return (
     <div style={{ padding: "0 16px" }}>
