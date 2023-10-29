@@ -3,10 +3,10 @@ import { Center, Img, Wrap, WrapItem } from "@chakra-ui/react";
 import Link from "next/link";
 const HOST = process.env.HOST;
 
+export const revalidate = 60;
+
 export default async function Home() {
-  const response = await fetch(`${HOST}/api/new`, {
-    next: { revalidate: 60 },
-  });
+  const response = await fetch(`${HOST}/api/new`);
   const { results: movies }: { results: IMvoies[] } = await response.json();
   console.log(Date());
 

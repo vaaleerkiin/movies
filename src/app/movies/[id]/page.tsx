@@ -11,10 +11,10 @@ import s from "./page.module.css";
 
 const HOST = process.env.HOST;
 
+export const revalidate = 60;
+
 export async function generateStaticParams() {
-  const response = await fetch(`${HOST}/api/new`, {
-    next: { revalidate: 60 },
-  });
+  const response = await fetch(`${HOST}/api/new`);
   const { results: movies }: { results: IMvoies[] } = await response.json();
   return movies.map(({ id }) => ({
     slug: id.toString(),
