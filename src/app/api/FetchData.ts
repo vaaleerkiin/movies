@@ -12,7 +12,7 @@ class FetchData {
   public async getPopular() {
     const response = await fetch(
       `${this.BASE_URL}${this.popularMovies}?api_key=${this.KEY}`,
-      { cache: "no-cache" }
+      { cache: "no-store" }
     );
     return await response.json();
   }
@@ -20,7 +20,7 @@ class FetchData {
   public async getDetails(movie_id: string) {
     const response = await fetch(
       `${this.BASE_URL}${this.detailsMovies}${movie_id}?api_key=${this.KEY}`,
-      { cache: "no-cache" }
+      { cache: "no-store" }
     );
 
     return await response.json();
@@ -30,7 +30,7 @@ class FetchData {
     const options = { params: { api_key: this.KEY } };
     const response = await fetch(
       `${this.BASE_URL}${this.detailsMovies}${movie_id}/credits?api_key=${this.KEY}`,
-      { cache: "no-cache" }
+      { cache: "no-store" }
     );
     return await response.json();
   }
@@ -38,7 +38,7 @@ class FetchData {
   public async getReviews(movie_id: string) {
     const response = await fetch(
       `${this.BASE_URL}${this.detailsMovies}${movie_id}/reviews?api_key=${this.KEY}`,
-      { cache: "no-cache" }
+      { cache: "no-store" }
     );
     return await response.json();
   }
@@ -47,7 +47,7 @@ class FetchData {
     const options = { params: { api_key: this.KEY, query } };
     const response = await fetch(
       `${this.BASE_URL}${this.searchMovies}?api_key=${this.KEY}&query=${query}`,
-      { cache: "no-cache" }
+      { cache: "no-store" }
     );
     return await response.json();
   }
